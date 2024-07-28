@@ -1,0 +1,25 @@
+<div class="mt-4">
+    {{!-- method là submit vs phương thức nào post, get, dialog
+          action="/news": action là submit ở cái url nào và nó sẽ mang theo 
+          query parameter sang trang đó lun
+     --}}
+    <form method="post">
+        <div class="mb-3">
+            <label for="search-input" class="form-label">Từ khóa</label>
+            <input type="text" name="fullname">
+            <input type="text" name="age">
+            <input type="text" name="q" class="form-control" id="exampleInputEmail1" placeholder="Nhập từ khóa">
+        </div>
+
+        <div class="mb-3">
+            <label for="search-input" class="form-label">Từ khóa</label>
+            <select  name="gender" class="form-control">
+                <option value="">-- chọn giới tính --</option>
+                <option value="male">Nam</option>
+                <option value="female">Nữ</option>
+            </select>
+        </div>
+       
+        <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+    </form>
+</div>
