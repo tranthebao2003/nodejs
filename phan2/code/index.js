@@ -211,3 +211,88 @@
 
 
 // HTTP MODULE
+// const http = require("node:http")
+// const fs = require("node:fs")
+// const { error } = require("node:console")
+
+// // tạo 1 server khi có bất kì req nào từ port 3000
+// // thì callback sẽ đc thực thi, res lại header
+// // là 200 object content-type và kết thúc res
+// // bằng việc trả về hello world
+// const server = http.createServer((req, res) => {
+//     // json response
+//     const superHero = {
+//         firstName: "Bruce",
+//         lastName: "Wayne"
+//     }
+
+//     // nếu muốn gửi đi 1 object thì phải chuyển content-type
+//     // về dạng application/json, đồng thời chuỗi object
+//     // đó về dạng json luôn
+//     // json reponse
+//     // res.writeHead(200, {"Content-Type": "application/json"})
+//     // res.end(JSON.stringify(superHero))
+
+//     // html reponse
+//     // res.writeHead(200, {"Content-Type": "text/html"})
+//     // cách 1: dùng stream (load data 1 cách từ từ)
+//     // fs.createReadStream(__dirname + "/index.html").pipe(res)
+
+//     // cách 2: Nếu sử dụng cách này khi file html lớn thì
+//     // sẽ ảnh hưởng đến hiệu năng, bởi vì nó sẽ chờ
+//     // load all content của file html 1 lần
+//     // const html = fs.readFileSync("./index.html", "utf-8")
+//     // res.end(html)
+    
+
+//     // {"Content-Type" : "text/plain"}:Giúp máy khách 
+//     // hiểu loại nội dung: Khi máy 
+//     // khách nhận được phản hồi từ máy chủ, tiêu đề 
+//     // Content-Type giúp máy khách xác định cách xử 
+//     // lý và hiển thị nội dung.
+//     // res.writeHead(200, {"Content-Type" : "text/plain"})
+//     // res.end("Hello world")
+
+//     // html template
+//     const name = "Thế Bảo Hải"
+//     res.writeHead(200, {"Content-type" : "text/html"})
+//     let html = fs.readFileSync("./index.html", "utf-8")
+//     html = html.replace("{{name}}", name)
+//     res.end(html)
+// })
+
+// // node js port 3000. lắng nghe req của client từ 
+// // port 3000
+// server.listen(3000, () => {
+//     console.log("Server running on port 3000")
+// })
+
+
+
+// HTTP ROUTING
+// const http = require("node:http")
+// const fs = require("node:fs")
+
+// const server = http.createServer((req, res) => {
+//     if(req.url === '/'){
+//         res.writeHead(200, {"Content-Type" : "text/plain"})
+//         res.end("Home page")
+//     } else if(req.url ==="/about"){
+//         res.writeHead(200, {"Content-Type" : "text/plain"})
+//         res.end("About page")
+//     } else if(req.url === "/api"){
+//         res.writeHead(200, {"Content-Type" : "application/json"})
+//         res.end(JSON.stringify({
+//             firstName: "Trần Thế",
+//             lastName: "Bảo"
+//         }))
+//     } else{
+//         res.writeHead(404)
+//         res.end("Page not found")
+//     }
+// })
+
+// server.listen(3000, () => {
+//     console.log("Server running on port 3000")
+// })
+
