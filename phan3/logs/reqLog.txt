@@ -28,3 +28,17 @@
 20240802	17:20:17	1e597224-26d2-4581-b0f8-ce6372b0a906	/css/style.css	GET
 20240802	17:20:20	904da39b-0d32-4d1a-8bcf-978e914c8012	/ewewew	GET
 20240802	17:20:20	dead7e03-9d48-4afd-8cb6-57b8325f20a8	/css/style.css	GET
+20240802	22:23:53	3232d581-77ab-4807-a50e-97406839002f	GET	undefined	/
+20240802	22:23:53	28b6b456-0e20-4e8b-a49d-ef54797ca9fa	GET	undefined	/css/style.css
+20240802	22:35:38	1c1dace0-60ab-43d3-a307-b146ff29f8fa	GET	undefined	/
+20240802	22:35:38	98f7a2f9-099d-4834-8809-a3dbf98adaf1	GET	undefined	/css/style.css
+20240802	22:35:47	fc076590-d93f-4d23-a48c-15885602423e	GET	undefined	/new-page
+20240802	22:35:47	e5121d52-933c-4be2-a12a-a1738f069f18	GET	undefined	/css/style.css
+20240802	22:35:47	554d9b32-9661-4f36-8c21-1bfcfdc3ed2e	GET	undefined	/img/img1.jpg
+20240802	22:36:01	fb55ed11-73b0-4393-9dff-da8b498a7807	GET	undefined	/new-page.html
+20240802	22:36:01	8d079fb7-aedb-4d39-831b-5d0f1cd293b2	GET	undefined	/css/style.css
+20240802	22:36:01	af1c9320-9e4a-4811-8220-cc460eb8bc69	GET	undefined	/img/img1.jpg
+20240802	22:36:26	2b5de2d8-3b3b-4c3e-978e-373287680b22	GET	undefined	/data/data.json
+20240802	22:36:26	7bd0177f-6feb-4dda-95ef-6f0a73dc480e	GET	undefined	/data/css/style.css
+20240802	22:42:24	ba50879a-89f2-4d3f-8964-98cec58aef58	GET	undefined	/
+20240802	22:42:24	7339bd0c-61fa-4a95-b2cf-dba8ee314c38	GET	undefined	/css/style.css

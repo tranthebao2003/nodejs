@@ -3,7 +3,7 @@ const path = require('node:path')
 const fs = require('node:fs')
 const fsPromises = require('node:fs/promises')
 
-const logEvents = require('./logEvents')
+const logEvents = require('./middleware/logEvents')
 
 const EventEmitter = require('node:events')
 

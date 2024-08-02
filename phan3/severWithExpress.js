@@ -2,8 +2,33 @@
 const express = require('express')
 const app = express()
 const path = require('node:path')
+const {logger} = require('./middleware/logEvents')
 const PORT = process.env.PORT || 3500
 
+// custom middleware logger
+// Cách hoạt động của middleware 
+// trong Express là chỉ cần cung cấp hàm 
+// middleware, và Express sẽ gọi hàm đó với các đối 
+// số phù hợp. Ở đây ta thấy ko cần truyền đối số
+// next, res, req nhưng logger vẫn chạy được
+app.use(logger);
+
+// app.use: để tích hợp middleware
+// build- in middleware to handle urlencoded data
+// in other words, from data:
+// 'content-type: appplication/x-www-form-urlencoded'
+// đặt dữ liệu phân tích vào req.body
+app.use(express.urlencoded({extended: false}))
+
+// build-in middleware for json
+// đặt dữ liệu phân tích vào req.body
+app.use(express.json())
+
+// serve static files
+// express.static() là một middleware tích hợp 
+// trong Express, được sử dụng để phục vụ các tệp 
+// tĩnh từ một thư mục cụ thể.
+app.use(express.static(path.join(__dirname, '/public')))
 
 // define route xử lí cá request GET đến đường 
 // dẫn '/' (trang chủ). Hàm callback sẽ được gọi

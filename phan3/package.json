@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node severWithExpress",
-    "dev": "nodemon severWithExpress"
+    "start": "node severWithExpress.js",
+    "dev": "nodemon severWithExpress.js"
   },
   "author": "",
   "license": "ISC",
