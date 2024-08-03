@@ -1,0 +1,4 @@
+20240803	13:33:53	ab2cc239-fc03-4f9c-a4b5-020ce746e38d	Error: Not allowed by CORS
+20240803	13:35:25	07dfdd7a-7046-4ab1-bbef-6bd0541eeb59	Error: Not allowed by CORS
+20240803	13:35:27	6ed1b5a4-adaf-4b99-bb87-f62ce93257ee	Error: Not allowed by CORS
+20240803	13:35:27	bfa92b5c-14b6-491f-b3c0-8ee2af12062e	Error: Not allowed by CORS

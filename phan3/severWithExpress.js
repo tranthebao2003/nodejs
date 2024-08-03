@@ -3,6 +3,9 @@ const express = require('express')
 const app = express()
 const path = require('node:path')
 const {logger} = require('./middleware/logEvents')
+const errorHandler = require('./middleware/errorHandler')
+const cors = require('cors')
+
 const PORT = process.env.PORT || 3500
 
 // custom middleware logger
@@ -12,6 +15,28 @@ const PORT = process.env.PORT || 3500
 // số phù hợp. Ở đây ta thấy ko cần truyền đối số
 // next, res, req nhưng logger vẫn chạy được
 app.use(logger);
+
+// third party middleware
+// khi truy cập từ những domain, live sever, localhost thì được phép
+// truy cập vào tài nguyên
+// liên quan đến bảo mật, tạm thời bỏ qua
+const whitelist = ['https://www.google.com', ' http://192.168.1.4:5500', 'http://localhost:3500']
+const coresOptions = {
+    origin: (origin, callback) => {
+        // những danh sách nào ko có trong danh
+        // hoặc !origin có thể truy cập resourse
+        // vì !origin nghĩa là false undefine
+        // mik đang trong giai đoạn phát triển
+        // thì header mình là undefined
+        if(whitelist.indexOf(origin) !== -1 || !origin){
+            callback(null, true)
+        } else{
+            callback(new Error('Not allowed by CORS'))
+        }
+    },
+    optionSuccessStatus: 200
+}
+app.use(cors(coresOptions))
 
 // app.use: để tích hợp middleware
 // build- in middleware to handle urlencoded data
@@ -40,6 +65,7 @@ app.use(express.static(path.join(__dirname, '/public')))
 // ^/$: nghĩa là nó phải kết thúc bằng dấu gách chéo
 // | toán tử or trong regex nghĩa là nó cho khớp
 // vs 1 trong 2 pattern
+
 app.get('^/$|/index(.html)?', (req, res) => {
     // cách 1: res.sendFile('./views/index.html', {root: __dirname})
     // cách 2:
@@ -95,9 +121,36 @@ app.get('/chain(.html)?', [one, two, three])
 // Nghĩa là, mọi yêu cầu GET đến bất kỳ URL nào mà 
 // không khớp với các tuyến đường khác đều sẽ được xử 
 // lý bởi tuyến đường này. Dùng để customize 404
-app.get('/*', (req, res) => {
-    res.status(404).sendFile(path.join(__dirname, 'views', '404.html'))
-})
+// app.get('/*', (req, res) => {
+//     res.status(404).sendFile(path.join(__dirname, 'views', '404.html'))
+// })
+
+// hoặc mình có thể dùng app.all mà ko cần dùng regex
+// để bắt lỗi 404
+// Trong Express được sử dụng để định nghĩa một 
+// middleware cho tất cả các phương thức HTTP 
+// (get, ,post, put, del, ) và tất 
+// cả các đường dẫn URL mà không được định nghĩa trước 
+// đó. Khi không có tuyến đường nào khác khớp với yêu 
+// cầu, middleware này sẽ được gọi và trả về một trang 
+// lỗi 404.
+
+app.all("*", (req, res) => {
+  res.status(404);
+  // Đoạn mã này xử lý yêu cầu dựa trên định dạng 
+  // (format) mà máy khách chấp nhận (thông qua header 
+  // Accept) và trả về phản hồi phù hợp (HTML, JSON, 
+  // hoặc văn bản thuần)
+  if (req.accepts("html")) {
+    res.sendFile(path.join(__dirname, "views", "404.html"));
+  } else if (req.accepts("json")) {
+    res.json({ error: "404 Not Found" });
+  } else {
+    res.type('txt').send('404 Not Found')
+  }
+});
+
+app.use(errorHandler)
 
 app.listen(PORT, () =>
   console.log(`Server with express running on port ${PORT}`)
