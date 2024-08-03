@@ -2,3 +2,12 @@
 20240803	13:35:25	07dfdd7a-7046-4ab1-bbef-6bd0541eeb59	Error: Not allowed by CORS
 20240803	13:35:27	6ed1b5a4-adaf-4b99-bb87-f62ce93257ee	Error: Not allowed by CORS
 20240803	13:35:27	bfa92b5c-14b6-491f-b3c0-8ee2af12062e	Error: Not allowed by CORS
+20240803	15:14:06	1818fbc0-4f1a-4e5d-8eaa-e6019254127d	Error: ENOENT: no such file or directory, stat 'D:\khac\nam_3\web\nodejs\phan3\subdir\index.html'
+20240803	15:14:12	2cb5d195-e67c-478f-9637-e152c9f68c35	Error: ENOENT: no such file or directory, stat 'D:\khac\nam_3\web\nodejs\phan3\subdir\index.html'
+20240803	15:16:37	ecc8e6f5-df2f-44c8-86fc-a61013121a01	Error: ENOENT: no such file or directory, stat 'D:\khac\nam_3\web\nodejs\phan3\subdir\index.html'
+20240803	15:16:39	8554132e-7bd5-4ec5-9bc2-953e346d72e0	Error: ENOENT: no such file or directory, stat 'D:\khac\nam_3\web\nodejs\phan3\subdir\index.html'
+20240803	15:17:13	c87c954b-5488-48cf-a1d8-8689f4c08413	Error: ENOENT: no such file or directory, stat 'D:\khac\nam_3\web\nodejs\phan3\subdir\index.html'
+20240803	15:17:23	4ba1ae36-1c7e-4b9b-8870-e7dacf93eb3d	Error: ENOENT: no such file or directory, stat 'D:\khac\nam_3\web\nodejs\phan3\subdir\index.html'
+20240803	15:18:51	4d9c4e3e-e3bb-4f9e-a673-3daf088dfc22	Error: ENOENT: no such file or directory, stat 'D:\khac\nam_3\web\nodejs\phan3\view\subdir\index.html'
+20240803	15:19:15	f4570017-8bd0-47e0-9191-1c3b0f894b76	Error: ENOENT: no such file or directory, stat 'D:\khac\nam_3\web\nodejs\phan3\view\subdir\index.html'
+20240803	15:19:16	5e09ac60-296d-4347-acea-726bed46614a	Error: ENOENT: no such file or directory, stat 'D:\khac\nam_3\web\nodejs\phan3\view\subdir\index.html'
