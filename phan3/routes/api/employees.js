@@ -20,12 +20,12 @@ router.route('/')
 
 
 // /:id2 là một tuyến đường động trong Express. 
-// Dấu hai chấm (:) trước id2 chỉ ra rằng id2 là một 
+// Dấu hai chấm (:) trước id chỉ ra rằng id là một 
 // tham số động trong URL.
 
 // Bất kỳ giá trị nào nằm ở vị trí của :id 
-// trong URL sẽ được lưu trữ trong req.params.id2
-router.route('/:id2')
+// trong URL sẽ được lưu trữ trong req.params.id
+router.route('/:id')
     .get(getEmployee)
 
 module.exports = router

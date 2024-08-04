@@ -44,7 +44,8 @@ app.use('/', require('./routes/root'))
 app.use('/subdir', require('./routes/subdir'))
 app.use('/employees', require('./routes/api/employees'))
 
-
+// Cross Origin Resource Sharing
+app.use(cors(corsOptions));
 
 // // Route handlers 
 // app.get('/hello(.html)?', (req, res, next) => {

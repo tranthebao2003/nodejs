@@ -7,7 +7,7 @@ const whitelist = [
   " http://192.168.1.4:5500",
   "http://localhost:3500",
 ];
-const coresOptions = {
+const corsOptions = {
     origin: (origin, callback) => {
         // những danh sách nào ko có trong danh
         // hoặc !origin có thể truy cập resourse
@@ -22,4 +22,5 @@ const coresOptions = {
     },
     optionSuccessStatus: 200
 }
-app.use(cors(coresOptions))
+
+module.exports = corsOptions

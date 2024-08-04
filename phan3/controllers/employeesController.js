@@ -1,6 +1,19 @@
+// Tạo object data chứa ds (employees) và 1
+
+const { da } = require('date-fns/locale')
+
+// method để update danh sách này
 const data = {
+    // Thuộc tính employees của đối tượng data 
+    // được gán dữ liệu từ tệp JSON 
     employees:require('../model/employees.json'),
-    setEmployees: function(data) {this.employees = data}
+
+    // ở đây bắt buộc phải dùng function thay vì arrow function
+    // bởi vì trong TH này mình cần this tham chiếu đến object data
+    // nếu dùng arrow func thì this nó sẽ ko tham chiếu đến data
+    setEmployees: function(data) {
+        {this.employees = data}
+    }
 }
 
 const getAllEmployees = (req, res) => {
@@ -9,31 +22,127 @@ const getAllEmployees = (req, res) => {
 }
 
 const createNewEmployee = (req, res) => {
-    // response 1 json là 1 object
-    // với firstname: res(request).body.firstname
-    // trong đó res.body có thể được thông qua
-    // để lấy all có trong body mà client đã ghi
-    res.json({
-        "firstname": req.body.firstname,
-        "lastname": req.body.lastname
-    })
+    const newEmployee = {
+      // data.employees[data.employees.length - 1]: lấy ra phần tử cuối
+      // cùng trong mảng. Sau đó .id là lấy id của phần tử đó
+      // sau đó + 1 rồi gán nó làm id mới. || 1 Nếu phía trước
+      // là mảng rổng thì nó trả về undefind thì nó sẽ gán id: 1
+      id: data.employees.length === 0
+        ? 1
+        : data.employees[data.employees.length - 1].id + 1,
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+    };
+
+        // nếu firstname hoặc lastname trống thì
+        // sẽ báo lỗi 400
+    if(!newEmployee.firstname || !newEmployee.lastname){
+        // 400 Bad Request là một mã trạng thái HTTP 
+        // chỉ ra rằng máy chủ không thể xử lý yêu cầu 
+        // do lỗi từ phía máy khách. Do cú pháp sai,
+        // dữ liệu không hợp lệ, và ở trường hợp này
+        // là thiếu thông tin thì server sẽ báo lỗi 400
+        return res.status(400).json({'message': 'First and last names are required'})
+    }
+
+    // ...data.employees: toán tử spread nó sẽ trải phần tử trong mảng ra
+    // sau đó thêm phần tử mới newEmployee vào. Hiểu đơn giản là nó bỏ
+    // dấu [] của mảng rồi thêm phấn tử mới vào rồi đóng lại thành mảng mới
+    // ổ đây bằng buộc phải dùng toán tử spread ko đc dùng push. Bởi vì
+    // push là thêm phần tử vào mảng cũ (thay đổi mảng cũ) mà ở đây
+    // mình dùng const cho data sẽ bị lỗi. Còn spread thì nó sẽ trải phần
+    // tử cũ ra thêm phần tử mới vào và đóng lại thành mảng mởi sẽ ko lỗi
+    data.setEmployees([...data.employees, newEmployee])
+
+    // phản hồi lại client ds nhân viên
+    // status 201 res success led to 
+    // tạo 1 tài nguyên
+    res.status(201).json(data.employees)
 }
 
 const updateEmployee = (req, res) => {
-    // tương tự post
-    res.json({
-        "firstname": req.body.firstname,
-        "lastname": req.body.lastname
-    })
+    // find nhận callback trả về giá trị
+    // giá trị này chính là object employee
+    // thoả điều kiện, nếu ko tìm thấy
+    // thì trả về undefined
+    const employee = data.employees.find(
+      (emp) => emp.id === parseInt(req.body.id)
+    );
+
+    if (!employee) {
+      return res
+        .status(400)
+        .json({ message: `Employee ID ${req.body.id} not found` });
+    }
+
+    // kiểm tra xem firstname có rỗng
+    // hay không nếu rỗng thì ko gán
+    if(req.body.firstname) {
+        employee.firstname = req.body.firstname
+    }
+    if(req.body.lastname){
+        employee.lastname = req.body.lastname
+    }
+
+    // trả về 1 mảng thoải điều kiện
+    // ở đây là mình lọc ra những 
+    // phần tử khác id mà req gửi lên
+    const fillterdArray = data.employees.filter(
+      (emp) => emp.id !== parseInt(req.body.id)
+    );
+
+    // thêm phần tử mới update vào lại mảng
+    const unsortedArray = [...fillterdArray, employee]
+
+    // hàm sort này mik hiểu là nếu mà a.id nó lớn hơn trả 
+    // về 1 (mà 1 sắp xếp sau),
+    // còn ngược lại thì nó trả về -1 (mà -1 sắp xếp trước)
+    // link test jvs: https://playcode.io/1959824
+    const sortedAscendingArray = unsortedArray.sort((a,b) => a.id > b.id ? 1 : -1)
+
+    data.setEmployees(sortedAscendingArray)
+    res.json(data.employees)
+
 }
 
 const deleteEmployee = (req, res) => {
-    // phản hồi lại giá trị của key id trong body
-    res.json({"id": req.body.id})
-}
+// tương tự như update
+// b1: tìm employee qua id bằng find
+// b2: check employee có tồn tại không
+// b3: lọc trả về mảng gồm những employee có id
+// khác với id tìm thấy (chính là xóa employee khỏi mảng)
+// b4: dùng toán tử spread tạo mảng mới ko có
+// employee bị xóa gán nó cho data.emplyees
+// b5: hiển thị data đó cho user
+  const employee = data.employees.find(
+    (emp) => emp.id === parseInt(req.body.id)
+  );
+
+  if(!employee){
+    return res.status(400).json({"message": `Employee ID ${req.body.id} not found`})
+  }
+
+  // lọc cái mảng không có không nhân đó
+  const fillterdArray = data.employees.filter(
+    (emp) => emp.id !== parseInt(req.body.id)
+  );
+
+  data.setEmployees([...fillterdArray])
+  res.json(data.employees)
+};
 
 const getEmployee = (req, res) => {
-    res.json({"id2" : req.params.id2})
+  const employee = data.employees.find(
+    (emp) => emp.id === parseInt(req.params.id)
+  );
+
+  if (!employee) {
+    return res
+      .status(400)
+      .json({ message: `Employee ID ${req.params.id} not found` });
+  }
+
+  res.json(employee)
 }
 
 module.exports = {
