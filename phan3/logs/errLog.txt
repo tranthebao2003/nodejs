@@ -11,3 +11,7 @@
 20240803	15:18:51	4d9c4e3e-e3bb-4f9e-a673-3daf088dfc22	Error: ENOENT: no such file or directory, stat 'D:\khac\nam_3\web\nodejs\phan3\view\subdir\index.html'
 20240803	15:19:15	f4570017-8bd0-47e0-9191-1c3b0f894b76	Error: ENOENT: no such file or directory, stat 'D:\khac\nam_3\web\nodejs\phan3\view\subdir\index.html'
 20240803	15:19:16	5e09ac60-296d-4347-acea-726bed46614a	Error: ENOENT: no such file or directory, stat 'D:\khac\nam_3\web\nodejs\phan3\view\subdir\index.html'
+20240804	09:59:08	2aeb9859-34e4-4f76-8cef-a5f46e058d49	TypeError: req.json is not a function
+20240804	10:00:21	82909370-9d7c-4265-904b-a15069de7470	TypeError: req.json is not a function
+20240804	10:01:20	1e1516d2-094b-4250-95ce-71ed188ff03c	TypeError: req.json is not a function
+20240804	10:03:07	fe7670d6-c640-493e-8c3b-9c1eddcb0410	TypeError: req.json is not a function
