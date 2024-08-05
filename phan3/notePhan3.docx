@@ -1,2 +1,17 @@
 Link bài giảng bắt đầu học từ bài 3: 
 https://www.youtube.com/watch?v=3ZAKY-CDKog&list=PL0Zuz27SZ-6PFkIxaJ6Xx_X46avTM1aYw&index=5
+
+Http status code
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
+
+Tổng qua về 3 package liên quan đến jwt
+cookie-parser:
+Sử dụng để phân tích cú pháp các cookie từ các yêu cầu HTTP. 
+Cookie có thể lưu trữ token JWT để xác thực người dùng.
+
+dotenv:
+Sử dụng để quản lý các biến môi trường, 
+chẳng hạn như khóa bí mật (secret key) để ký và xác minh token JWT.
+
+jsonwebtoken:
+Sử dụng để tạo và xác minh token JWT, được sử dụng để xác thực người dùng.
