@@ -41,6 +41,7 @@ app.use('/subdir',express.static(path.join(__dirname, '/public')))
 // với /subdir sẽ được xử lý bởi các tuyến đường được 
 // định nghĩa trong module ./routes/subdir
 app.use('/', require('./routes/root'))
+app.use('/register', require('./routes/register'))
 app.use('/subdir', require('./routes/subdir'))
 app.use('/employees', require('./routes/api/employees'))
 

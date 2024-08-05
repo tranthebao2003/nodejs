@@ -243,3 +243,17 @@
 20240804	17:56:43	ec709cfb-c369-4b16-ade9-3472a3340b93	GET	undefined	/employees/2
 20240804	17:56:46	8d4689fa-fe8c-4873-b810-ec347534cb35	GET	undefined	/employees/7
 20240804	17:56:53	d70640d2-f880-4e0c-a903-d6b42c05e943	GET	undefined	/employees
+20240805	10:40:09	66876417-c3ce-412c-969d-60a6b820c7dd	POST	undefined	/register
+20240805	10:42:05	8728a389-2e85-440d-983f-299f1d0df1de	POST	undefined	/register
+20240805	10:42:51	bb18c677-2710-4027-8d46-9ae6de7a7986	POST	undefined	/register
+20240805	10:43:02	bb889eae-a302-408e-9f5f-78dd6e02ffd7	POST	undefined	/register
+20240805	10:43:06	b0a3f35e-f78f-4dd3-a46b-48b3d26e0002	POST	undefined	/register
+20240805	10:43:21	5172012c-cfa3-482e-8054-2da9edd1bb01	POST	undefined	/register
+20240805	10:43:37	539f9b2c-43d3-41a9-bb7f-0ee20ce4e317	POST	undefined	/register
+20240805	10:44:07	5f8a0aad-6d5e-4f77-9cb1-5d7f0bcbe0cf	POST	undefined	/register
+20240805	10:44:16	244a269e-2f05-4757-b3fb-d31e18210bb8	POST	undefined	/register
+20240805	10:45:50	5fa4ee15-679a-455a-96cf-6d7f3eb51811	POST	undefined	/register
+20240805	10:46:21	09a79620-bd84-4062-8e1f-c1900ffa4a09	POST	undefined	/register
+20240805	10:47:59	eb92ff1a-7605-442b-8ea8-09e6b9af91c6	POST	undefined	/register
+20240805	10:48:18	10b43bec-9292-47cd-a1be-1779c8bd183a	POST	undefined	/register
+20240805	10:48:21	40899bfe-2bd2-47c3-b977-fdc71e7d0299	POST	undefined	/register
