@@ -16,9 +16,12 @@ const data = {
     }
 }
 
+const fsPromises = require("node:fs/promises")
+const path = require("node:path")
+
 const getAllEmployees = (req, res) => {
     // response 1 json data
-    res.json(data.employees)
+    return res.status(200).json(data.employees)
 }
 
 const createNewEmployee = (req, res) => {
@@ -53,6 +56,12 @@ const createNewEmployee = (req, res) => {
     // mình dùng const cho data sẽ bị lỗi. Còn spread thì nó sẽ trải phần
     // tử cũ ra thêm phần tử mới vào và đóng lại thành mảng mởi sẽ ko lỗi
     data.setEmployees([...data.employees, newEmployee])
+
+    // ghi vào file
+    fsPromises.writeFile(
+      path.join(__dirname, "..", "model", "employees.json"),
+      JSON.stringify(data.employees)
+    );
 
     // phản hồi lại client ds nhân viên
     // status 201 res success led to 
@@ -101,6 +110,12 @@ const updateEmployee = (req, res) => {
     const sortedAscendingArray = unsortedArray.sort((a,b) => a.id > b.id ? 1 : -1)
 
     data.setEmployees(sortedAscendingArray)
+
+    fsPromises.writeFile(
+      path.join(__dirname, "..", "model", "employees.json"),
+      JSON.stringify(data.employees)
+    );
+
     res.json(data.employees)
 
 }
@@ -128,6 +143,10 @@ const deleteEmployee = (req, res) => {
   );
 
   data.setEmployees([...fillterdArray])
+  fsPromises.writeFile(
+    path.join(__dirname, "..", "model", "employees.json"),
+    JSON.stringify(data.employees)
+  );
   res.json(data.employees)
 };
 

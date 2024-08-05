@@ -11,9 +11,9 @@ const jwt = require('jsonwebtoken')
 require('dotenv').config()
 const fsPromises = require('fs/promises')
 const path = require('path');
-const { patch } = require("../routes/root");
 
 const handleLogin = async (req, res) => {
+  // MỤC ĐÍCH LÀ XÁC THỰC NGƯỜI DÙNG (AUTHENTICATION)
   const { user, password } = req.body;
   if (!user || !password) {
     return res
@@ -30,6 +30,8 @@ const handleLogin = async (req, res) => {
   // evaluate password
   // trong trường hợp match trả về true, false
   const match = await bcrypt.compare(password, foundUser.password)
+
+  // MỤC ĐÍCH CỦA JWT LÀ ĐỂ CẤP QUYỀN (AUTHORIZATION)
   if(match){
     // create JWTs
     const accessToken = jwt.sign(
@@ -37,8 +39,8 @@ const handleLogin = async (req, res) => {
         "username": foundUser.username,
       },
       process.env.ACCESS_TOKEN_SECRET,
-      // trong sp nên để expiresIn này khoảng 10p
-      {expiresIn: '30s'}
+      // trong sp nên để expiresIn này khoảng 10m
+      {expiresIn: '5m'}
     )
 
     const refreshToken = jwt.sign(
@@ -56,10 +58,21 @@ const handleLogin = async (req, res) => {
     const currentUser = {...foundUser, refreshToken}
     usersDB.setUsers([...otherUsers, currentUser])
     await fsPromises.writeFile(
-      path.json(__dirname, '..', 'model', 'users.json'),
+      path.join(__dirname, '..', 'model', 'users.json'),
       JSON.stringify(usersDB.users)
     )
 
+    // Tên cookie: 'jwt'
+    // Giá trị cookie: refreshToken
+    // httpOnly: true: Thiết lập cookie chỉ có thể 
+    // truy cập được bởi máy chủ (HTTP only), không 
+    // thể truy cập từ JavaScript trên trình duyệt, 
+    // giúp bảo vệ khỏi các tấn công XSS
+    // maxAge: 24 * 60 * 60 * 1000: Thiết lập thời gian sống của cookie 
+    // maxAge đơn vị là milisecond nên 24 * 60 * 60 * 1000 chỉ
+    // là phép nhân đơn thuần để ra đc số milisecond cần thiết 
+    // bằng với 1 ngày thôi
+    // là 24 giờ (24 giờ * 60 phút * 60 giây * 1000 mili giây)
     res.cookie('jwt', refreshToken, {httpOnly: true, maxAge: 24 * 60 * 60 * 1000})
     res.status(200).json({accessToken})
   } else{

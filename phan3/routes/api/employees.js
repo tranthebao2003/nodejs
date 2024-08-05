@@ -8,11 +8,15 @@ const {
   getEmployee,
 } = require("../../controllers/employeesController");
 
+
 // Đoạn mã này sử dụng express.Router() để định 
 // nghĩa các tuyến đường xử lý các yêu cầu HTTP 
 // (GET, POST, PUT, DELETE) cho cùng một URL, cụ thể 
 // là URL /
 router.route('/') 
+    // trước khi getAllEmployees thì phải 
+    // qua bước verifyJWT (có next để qua
+    // hàm tiếp)
     .get(getAllEmployees)
     .post(createNewEmployee)
     .put(updateEmployee)

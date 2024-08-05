@@ -15,3 +15,11 @@ chẳng hạn như khóa bí mật (secret key) để ký và xác minh token JW
 
 jsonwebtoken:
 Sử dụng để tạo và xác minh token JWT, được sử dụng để xác thực người dùng.
+
+5 loại cú pháp res
+- res.status(statusNumber).json(json): trả về statusNumber, json và kết thúc request (thường sử dụng)
+- res.sendStatus(statusNumber): trả về statusNumber và kết thúc request
+- res.sendFile(path): trả về file và kết thúc request
+- res.send(string): trả về string và kết thúc request
+* lưu ý nếu mình gửi res.status(statusNumber) thôi ấy thì nó sẽ treo 
+sever luôn (forever loop) rất nguy hiểm

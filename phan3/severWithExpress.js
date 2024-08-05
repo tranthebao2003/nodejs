@@ -8,6 +8,7 @@ const cors = require('cors')
 const corsOptions = require('./config/corsOptions')
 
 const PORT = process.env.PORT || 3500
+const {verifyJWT} = require('./middleware/verifyJWT')
 
 // custom middleware logger
 // Cách hoạt động của middleware 
@@ -44,6 +45,11 @@ app.use('/', require('./routes/root'))
 app.use('/register', require('./routes/register'))
 app.use('/auth', require('./routes/auth'))
 app.use('/subdir', require('./routes/subdir'))
+
+// nó hoạt động mô hình waterfall từ trên xuống
+// ở đây mình chỉ muốn authorization path dẫn đến
+// /employees tất cả các method luôn
+app.use(verifyJWT)
 app.use('/employees', require('./routes/api/employees'))
 
 // Cross Origin Resource Sharing
