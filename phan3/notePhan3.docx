@@ -46,3 +46,7 @@ Gọi hàm:
 
 Bạn cũng có thể sử dụng ?. để gọi một hàm một cách an toàn.
 Ví dụ: object?.method() sẽ không gọi hàm và trả về undefined nếu object là null hoặc undefined.
+
+DO CHÍNH SÁCH CORS của Web
+nên frontend phải có credentials: include, axios, 
+fetch đều cần

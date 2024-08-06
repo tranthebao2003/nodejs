@@ -5,11 +5,11 @@ const path = require('node:path')
 const {logger} = require('./middleware/logEvents')
 const errorHandler = require('./middleware/errorHandler')
 const cors = require('cors')
-const corsOptions = require('./config/corsOptions')
 
 const PORT = process.env.PORT || 3500
 const {verifyJWT} = require('./middleware/verifyJWT')
 const cookieParser = require('cookie-parser')
+const {credentials} = require('./middleware/credentials')
 
 // custom middleware logger
 // Cách hoạt động của middleware 
@@ -50,6 +50,7 @@ app.use('/', require('./routes/root'))
 app.use('/register', require('./routes/register'))
 app.use('/auth', require('./routes/auth'))
 app.use('/refresh', require('./routes/refresh'))
+app.use('/logout', require('./routes/logout'))
 app.use('/subdir', require('./routes/subdir'))
 
 // nó hoạt động mô hình waterfall từ trên xuống
@@ -59,7 +60,7 @@ app.use(verifyJWT)
 app.use('/employees', require('./routes/api/employees'))
 
 // Cross Origin Resource Sharing
-app.use(cors(corsOptions));
+app.use(cors(credentials));
 
 // // Route handlers 
 // app.get('/hello(.html)?', (req, res, next) => {

@@ -31,3 +31,4 @@
 20240806	09:22:54	de5365af-ee69-4f10-ae88-492775b30357	TypeError: Cannot read properties of undefined (reading 'jwt')
 20240806	09:23:03	bd2bb807-de76-49c3-abb8-8049dfed8019	TypeError: Cannot read properties of undefined (reading 'jwt')
 20240806	09:23:21	17581db5-84fb-4723-aedf-48a150e2ad3d	TypeError: Cannot read properties of undefined (reading 'jwt')
+20240806	13:13:04	501ac535-664e-4e3e-a5a1-9504f841a477	ReferenceError: c is not defined

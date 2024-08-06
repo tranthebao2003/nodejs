@@ -2,11 +2,8 @@
 // khi truy cập từ những domain, live sever, localhost thì được phép
 // truy cập vào tài nguyên
 // liên quan đến bảo mật, tạm thời bỏ qua
-const whitelist = [
-  "https://www.google.com",
-  " http://192.168.1.4:5500",
-  "http://localhost:3500",
-];
+const {allowedOrigin} = require('./allowedOrigin')
+
 const corsOptions = {
     origin: (origin, callback) => {
         // những danh sách nào ko có trong danh
@@ -14,7 +11,7 @@ const corsOptions = {
         // vì !origin nghĩa là false undefine
         // mik đang trong giai đoạn phát triển
         // thì header mình là undefined
-        if(whitelist.indexOf(origin) !== -1 || !origin){
+        if(allowedOrigin.indexOf(origin) !== -1 || !origin){
             callback(null, true)
         } else{
             callback(new Error('Not allowed by CORS'))
@@ -23,4 +20,4 @@ const corsOptions = {
     optionSuccessStatus: 200
 }
 
-module.exports = corsOptions
+module.exports = {corsOptions}

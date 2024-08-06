@@ -8,6 +8,7 @@ const usersDB = {
 const bcrypt = require('bcrypt')
 
 const jwt = require('jsonwebtoken')
+// để dùng được các biến trong fine .env (variable enviroment)
 require('dotenv').config()
 const fsPromises = require('fs/promises')
 const path = require('path');
@@ -56,6 +57,7 @@ const handleLogin = async (req, res) => {
     const otherUsers = usersDB.users.filter(person => person.username !== foundUser.username)
     // dùng toàn tử spread để thêm key mới cho object
     const currentUser = {...foundUser, refreshToken}
+    console.log('currentUser from authController', currentUser)
     usersDB.setUsers([...otherUsers, currentUser])
     await fsPromises.writeFile(
       path.join(__dirname, '..', 'model', 'users.json'),
@@ -73,7 +75,7 @@ const handleLogin = async (req, res) => {
     // là phép nhân đơn thuần để ra đc số milisecond cần thiết 
     // bằng với 1 ngày thôi
     // là 24 giờ (24 giờ * 60 phút * 60 giây * 1000 mili giây)
-    res.cookie('jwt', refreshToken, {httpOnly: true, maxAge: 24 * 60 * 60 * 1000})
+    res.cookie('jwt', refreshToken, {httpOnly: true, sameSite: 'None', secure: true, maxAge: 24 * 60 * 60 * 1000})
     res.json({accessToken})
   } else{
     res.sendStatus(401)

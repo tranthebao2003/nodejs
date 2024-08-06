@@ -20,7 +20,7 @@ const handleRefreshToken = (req, res) => {
 
   // lấy ra jwt trong cookies mình đã tạo
   // và gửi đi cùng lúc trong authController
-  console.log(cookies.jwt)
+  // console.log(cookies.jwt)
   
   const refreshToken = cookies.jwt;
 
