@@ -49,7 +49,11 @@ const handleNewUser = async (req, res) => {
     // tăng gấp đôi
     const hashePwd = await bcrypt.hash(password, 10);
     // store the new user
-    const newUser = { username: user, password: hashePwd };
+    const newUser = {
+      username: user,
+      roles: { User: 2001 },
+      password: hashePwd,
+    };
     usersDB.setUsers([...usersDB.users, newUser]);
 
     {/*   

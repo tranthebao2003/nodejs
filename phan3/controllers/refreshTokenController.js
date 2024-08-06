@@ -41,8 +41,14 @@ const handleRefreshToken = (req, res) => {
     if (err || foundUser.username !== decode.username) {
       return res.sendStatus(403);
     }
+    const roles = Object.values(foundUser.roles);
     const accessToken = jwt.sign(
-      { username: decode.username },
+      { UserInfo: 
+        { 
+          username: decode.username, 
+          roles: roles 
+        } 
+      },
       process.env.ACCESS_TOKEN_SECRET,
       // với product thì nên để 5m đến 10m
       { expiresIn: "30s" }
