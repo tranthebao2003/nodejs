@@ -26,13 +26,12 @@ const getAllEmployees = (req, res) => {
 
 const createNewEmployee = (req, res) => {
     const newEmployee = {
-      // data.employees[data.employees.length - 1]: lấy ra phần tử cuối
-      // cùng trong mảng. Sau đó .id là lấy id của phần tử đó
-      // sau đó + 1 rồi gán nó làm id mới. || 1 Nếu phía trước
-      // là mảng rổng thì nó trả về undefind thì nó sẽ gán id: 1
-      id: data.employees.length === 0
-        ? 1
-        : data.employees[data.employees.length - 1].id + 1,
+      // Sử dụng obtional chaining: nếu data.employees là undefined or null
+      // nó sẽ trả về undefined thì mình gán id là 1 overwise thì
+      // lấy ra id của phần tử cuối tăng lên 1
+      id: data.employees?.length
+        ? data.employees[data.employees.length - 1].id + 1
+        : 1,
       firstname: req.body.firstname,
       lastname: req.body.lastname,
     };

@@ -40,7 +40,7 @@ const handleLogin = async (req, res) => {
       },
       process.env.ACCESS_TOKEN_SECRET,
       // trong sp nên để expiresIn này khoảng 10m
-      {expiresIn: '5m'}
+      {expiresIn: '30s'}
     )
 
     const refreshToken = jwt.sign(
@@ -74,7 +74,7 @@ const handleLogin = async (req, res) => {
     // bằng với 1 ngày thôi
     // là 24 giờ (24 giờ * 60 phút * 60 giây * 1000 mili giây)
     res.cookie('jwt', refreshToken, {httpOnly: true, maxAge: 24 * 60 * 60 * 1000})
-    res.status(200).json({accessToken})
+    res.json({accessToken})
   } else{
     res.sendStatus(401)
   }

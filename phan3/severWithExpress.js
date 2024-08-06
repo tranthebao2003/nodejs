@@ -9,6 +9,7 @@ const corsOptions = require('./config/corsOptions')
 
 const PORT = process.env.PORT || 3500
 const {verifyJWT} = require('./middleware/verifyJWT')
+const cookieParser = require('cookie-parser')
 
 // custom middleware logger
 // Cách hoạt động của middleware 
@@ -30,12 +31,16 @@ app.use(express.urlencoded({extended: false}))
 // đặt dữ liệu phân tích vào req.body
 app.use(express.json())
 
+// middleware for cookiers
+app.use(cookieParser())
+
 // serve static files
 // express.static() là một middleware tích hợp 
 // trong Express, được sử dụng để phục vụ các tệp 
 // tĩnh từ một thư mục cụ thể.
 app.use('/',express.static(path.join(__dirname, '/public')))
 app.use('/subdir',express.static(path.join(__dirname, '/public')))
+
 
 // use Express Router
 // Điều này có nghĩa là bất kỳ yêu cầu nào bắt đầu 
@@ -44,6 +49,7 @@ app.use('/subdir',express.static(path.join(__dirname, '/public')))
 app.use('/', require('./routes/root'))
 app.use('/register', require('./routes/register'))
 app.use('/auth', require('./routes/auth'))
+app.use('/refresh', require('./routes/refresh'))
 app.use('/subdir', require('./routes/subdir'))
 
 // nó hoạt động mô hình waterfall từ trên xuống
