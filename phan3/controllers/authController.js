@@ -8,8 +8,6 @@ const usersDB = {
 const bcrypt = require('bcrypt')
 
 const jwt = require('jsonwebtoken')
-// để dùng được các biến trong fine .env (variable enviroment)
-require('dotenv').config()
 const fsPromises = require('fs/promises')
 const path = require('path');
 
@@ -47,7 +45,7 @@ const handleLogin = async (req, res) => {
       },
       process.env.ACCESS_TOKEN_SECRET,
       // trong sp nên để expiresIn này khoảng 10m
-      {expiresIn: '30s'}
+      {expiresIn: '5m'}
     )
 
     const refreshToken = jwt.sign(
@@ -84,7 +82,6 @@ const handleLogin = async (req, res) => {
     res.cookie("jwt", refreshToken, {
       httpOnly: true,
       sameSite: "None",
-      secure: true,
       maxAge: 24 * 60 * 60 * 1000,
     });
     res.json({accessToken})

@@ -6,12 +6,12 @@ const usersDB = {
 };
 
 const jwt = require("jsonwebtoken");
-require("dotenv").config();
 
 const handleRefreshToken = (req, res) => {
   // req.cookie: đây chính là cookie-parser lưu
   // cookie sau khi đã phân tích cú pháp
   const cookies = req.cookies;
+  console.log(cookies)
 
   // OBTIONAL CHAINING
   if (!cookies?.jwt) {

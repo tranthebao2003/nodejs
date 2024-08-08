@@ -1,15 +1,21 @@
-
+// để sử dụng được biến môi trường trong file dotenv
+require('dotenv').config()
 const express = require('express')
 const app = express()
 const path = require('node:path')
 const {logger} = require('./middleware/logEvents')
 const errorHandler = require('./middleware/errorHandler')
 const cors = require('cors')
+const mongoose = require('mongoose')
+const connectDB = require('./config/dbConn')
 
 const PORT = process.env.PORT || 3500
 const {verifyJWT} = require('./middleware/verifyJWT')
 const cookieParser = require('cookie-parser')
-const {credentials} = require('./middleware/credentials')
+const credentials = require('./middleware/credentials')
+
+// connect to MonggoDB
+connectDB()
 
 // custom middleware logger
 // Cách hoạt động của middleware 
@@ -127,6 +133,12 @@ app.all("*", (req, res) => {
 
 app.use(errorHandler)
 
-app.listen(PORT, () =>
-  console.log(`Server with express running on port ${PORT}`)
-);
+// Câu lệnh mongoose.connection.once('open', () => {}) trong Mongoose được 
+// sử dụng để thiết lập một callback sẽ được gọi một lần khi kết nối
+//  tới cơ sở dữ liệu MongoDB được mở thành công.
+mongoose.connection.once('open', () => {
+  console.log('Connected to MongoDB')
+  app.listen(PORT, () =>
+    console.log(`Server with express running on port ${PORT}`)
+  );
+})

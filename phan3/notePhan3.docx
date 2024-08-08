@@ -50,3 +50,8 @@ Ví dụ: object?.method() sẽ không gọi hàm và trả về undefined nếu
 DO CHÍNH SÁCH CORS của Web
 nên frontend phải có credentials: include, axios, 
 fetch đều cần
+
+LỖI [Object: null prototype] {}
+Nếu thấy bất kì object này bị như vầy
+đặc biệt là cookie có nghĩa ban đầu tạo
+cookie bị sai format

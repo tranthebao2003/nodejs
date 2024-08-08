@@ -32,3 +32,11 @@
 20240806	09:23:03	bd2bb807-de76-49c3-abb8-8049dfed8019	TypeError: Cannot read properties of undefined (reading 'jwt')
 20240806	09:23:21	17581db5-84fb-4723-aedf-48a150e2ad3d	TypeError: Cannot read properties of undefined (reading 'jwt')
 20240806	13:13:04	501ac535-664e-4e3e-a5a1-9504f841a477	ReferenceError: c is not defined
+20240808	10:01:32	d62e7f6f-de5d-47ae-8f10-8b12838f1db4	TypeError: authHeader?.startWith is not a function
+20240808	10:02:50	4e7994d2-5ed4-4392-b252-bbe842d91fed	TypeError: authHeader?.startWith is not a function
+20240808	10:03:51	ac05121e-5fe7-4408-8230-ea06b080ee72	TypeError: authHeader.startWith is not a function
+20240808	10:04:20	ec89dab7-4cd1-46c7-8cfa-d5c19bdd617d	TypeError: authHeader.startWith is not a function
+20240808	10:05:03	c4a1a078-0401-4a1e-b321-4cb70404a6a6	TypeError: authHeader.startWith is not a function
+20240808	10:16:25	de106b72-d40e-456f-92a0-023252063901	TypeError: Cannot read properties of undefined (reading 'startsWith')
+20240808	10:23:28	e04502fd-28d2-426c-831e-7e5217bbb2de	TypeError: next is not a function
+20240808	10:27:17	6bb679e4-1c68-43c9-afa0-084d30b74c5d	TypeError: next is not a function
