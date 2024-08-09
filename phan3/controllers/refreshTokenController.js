@@ -1,13 +1,18 @@
-const usersDB = {
-  users: require("../model/users.json"),
-  setUsers: function (data) {
-    this.users = data;
-  },
-};
+// DÙNG FILE JSON
+// const usersDB = {
+//   users: require("../model/users.json"),
+//   setUsers: function (data) {
+//     this.users = data;
+//   },
+// };
+
+
+// DÙNG MONGODB
+const User = require('../model/User')
 
 const jwt = require("jsonwebtoken");
 
-const handleRefreshToken = (req, res) => {
+const handleRefreshToken = async (req, res) => {
   // req.cookie: đây chính là cookie-parser lưu
   // cookie sau khi đã phân tích cú pháp
   const cookies = req.cookies;
@@ -23,12 +28,14 @@ const handleRefreshToken = (req, res) => {
   // console.log(cookies.jwt)
   
   const refreshToken = cookies.jwt;
+  // Câu lệnh này tìm kiếm một tài liệu trong collection 
+  // users có trường refreshToken với giá trị khớp với 
+  // refreshToken mà bạn cung cấp. Nếu tài liệu đó tồn tại, 
+  // nó sẽ được trả về; nếu không, kết quả sẽ là null.
+  // vì tên khóa và tên biến giống nhau nên mình có
+  // thể viết refreshToken là ES6 nó sẽ mở refreshToken: refreshToken
+  const foundUser = await User.findOne({refreshToken}).exec()
 
-  // Cũng ở trong authController mình đã gán refresh token
-  // cho những user còn lại (Ngoài user đăng nhập)
-  const foundUser = usersDB.users.find(
-    (person) => person.refreshToken === refreshToken
-  );
   if (!foundUser) {
     // forbidden
     console.log('Không tìm thấy user có refreshToken')
@@ -51,7 +58,7 @@ const handleRefreshToken = (req, res) => {
       },
       process.env.ACCESS_TOKEN_SECRET,
       // với product thì nên để 5m đến 10m
-      { expiresIn: "30s" }
+      { expiresIn: "5m" }
     );
     res.json({ accessToken });
   });

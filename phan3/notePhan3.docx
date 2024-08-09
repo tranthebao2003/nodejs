@@ -55,3 +55,20 @@ LỖI [Object: null prototype] {}
 Nếu thấy bất kì object này bị như vầy
 đặc biệt là cookie có nghĩa ban đầu tạo
 cookie bị sai format
+
+
+SỬ DỤNG .EXEC() VÀ KHI KHÔNG SỬ DỤNG .EXEC() 
+
+Không sử dụng .exec():
+Truy vấn được thực thi ngay lập tức và trả về một Promise.
+Tiện lợi và ngắn gọn khi sử dụng async/await hoặc làm việc trực tiếp với Promise.
+Không cần sử dụng trong TH như dùng query find() nhưng ko cần
+có điều kiện muốn trả về toàn bộ danh sách
+
+Sử dụng .exec():
+Cho phép bạn trì hoãn việc thực thi truy vấn cho đến khi gọi .exec().
+Cung cấp rõ ràng rằng truy vấn sẽ trả về một Promise.
+Có thể dùng với callback truyền vào .exec(callback).
+Nên sử dụng trong TH như dùng query findOne({name: res.body.name}).exex()
+có điều kiện (đk này tìm 1 document đầu tiên có tên req match với
+field name trong database) trả về 1 doc phù hợp hoặc null nếu ko có
