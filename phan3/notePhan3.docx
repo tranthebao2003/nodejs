@@ -72,3 +72,7 @@ Có thể dùng với callback truyền vào .exec(callback).
 Nên sử dụng trong TH như dùng query findOne({name: res.body.name}).exex()
 có điều kiện (đk này tìm 1 document đầu tiên có tên req match với
 field name trong database) trả về 1 doc phù hợp hoặc null nếu ko có
+
+deploy
+Trang render nodejs: https://render.com/
+Video hướng dẫn: https://www.youtube.com/watch?v=NkulG9hH2LI 
